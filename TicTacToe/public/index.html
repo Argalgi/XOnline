@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>איקס עיגול אונליין</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <h1>🎮 איקס עיגול אונליין</h1>
+                <p>שחק עם חברים שלך בזמן אמת</p>
+                
+                <div id="connectionWarning" class="connection-warning hidden">
+                    ⚠️ שרת המשחק לא זמין. אנא הפעל את השרת עם הפקודה:<br>
+                    <code>npm start</code>
+                </div>
+                
+                <div class="welcome-form">
+                    <input 
+                        type="text" 
+                        id="playerName" 
+                        placeholder="הכנס את שמך"
+                        maxlength="20"
+                    >
+                    
+                    <div class="button-group">
+                        <button id="createBtn" class="btn btn-primary">צור משחק חדש</button>
+                        <button id="joinBtn" class="btn btn-secondary">הצטרף למשחק</button>
+                    </div>
+
+                    <div id="joinForm" class="join-form hidden">
+                        <input 
+                            type="text" 
+                            id="roomCode" 
+                            placeholder="הכנס קוד משחק"
+                            maxlength="10"
+                        >
+                        <button id="joinConfirm" class="btn btn-primary">הצטרף</button>
+                        <button id="joinCancel" class="btn btn-secondary">ביטול</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Waiting Screen -->
+        <div id="roomWaitingScreen" class="screen">
+            <div class="waiting-content">
+                <h2>המתנה לשחקן שני</h2>
+                <p>שתף את הקישור הזה עם חברך:</p>
+                
+                <div class="share-box">
+                    <input type="text" id="shareLink" readonly>
+                    <button id="copyBtn" class="btn btn-primary">📋 העתק</button>
+                </div>
+                
+                <p>או שתף את הקוד:</p>
+                <div class="code-box" id="roomCode">...</div>
+                
+                <p class="waiting-text">⏳ המתנה לשחקן השני להצטרף...</p>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="player-info">
+                    <div id="player1" class="player">
+                        <span class="player-name">שחקן 1</span>
+                        <span class="player-symbol">X</span>
+                        <span class="player-score">0</span>
+                    </div>
+                </div>
+                
+                <div class="game-title">
+                    <h1>איקס עיגול</h1>
+                    <p id="turnIndicator">תור של: שחקן</p>
+                </div>
+                
+                <div class="player-info">
+                    <div id="player2" class="player">
+                        <span class="player-name">שחקן 2</span>
+                        <span class="player-symbol">O</span>
+                        <span class="player-score">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+
+            <div class="game-controls">
+                <button id="newGameBtn" class="btn btn-secondary">משחק חדש</button>
+                <button id="resetScoresBtn" class="btn btn-danger">אפס ניקוד</button>
+            </div>
+
+            <div id="gameStatus" class="game-status"></div>
+
+            <div id="connectionStatus" class="connection-status">
+                <span id="connectionIndicator">●</span> מחובר
+            </div>
+        </div>
+
+        <!-- Error Dialog -->
+        <div id="errorDialog" class="dialog hidden">
+            <div class="dialog-content">
+                <h3>שגיאה</h3>
+                <p id="errorMessage"></p>
+                <button id="errorOkBtn" class="btn btn-primary">אישור</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
