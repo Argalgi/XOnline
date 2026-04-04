@@ -1,0 +1,19 @@
+{
+  "name": "tictactoe-online",
+  "version": "1.0.0",
+  "description": "Online Tic Tac Toe game for multiplayer",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["tic-tac-toe", "game", "multiplayer"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4",
+    "cors": "^2.8.5"
+  }
+}
